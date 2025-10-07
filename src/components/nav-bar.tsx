@@ -93,10 +93,7 @@ export function NavBar() {
 						key={item.href}
 						href={item.href}
 						className='text-sm font-medium
-							transition-colors hover:text-primary
-							focus:outline-none focus:ring-2
-							focus:ring-primary focus:ring-offset-2
-							rounded-sm'
+							transition-colors hover:text-primary'
 					>
 						{item.label}
 					</Link>
@@ -117,9 +114,7 @@ export function NavBar() {
 							aria-haspopup='true'
 							aria-label='Menu servizi'
 							className='text-sm font-medium
-								transition-colors hover:text-primary
-								focus:outline-none focus:ring-2
-								focus:ring-primary focus:ring-offset-2'
+								transition-colors hover:text-primary'
 						>
 							Servizi
 						</button>
@@ -143,14 +138,12 @@ export function NavBar() {
 								key={item.href}
 								href={item.href}
 								role='menuitem'
-								className='block rounded-sm px-3 py-3
+								className='block px-3 py-2
 									text-sm transition-colors
 									hover:bg-accent
 									hover:text-accent-foreground
 									focus:bg-accent
-									focus:text-accent-foreground
-									focus:outline-none focus:ring-2
-									focus:ring-primary'
+									focus:text-accent-foreground'
 							>
 								{item.label}
 							</Link>

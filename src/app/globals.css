@@ -147,12 +147,14 @@
     @apply rounded-sm;
   }
   
-  /* Target tocco minimo 44px per mobile */
-  button, 
-  a,
-  input,
-  textarea,
-  select {
-    min-height: 44px;
-  }
+	/* Target tocco minimo 44px per mobile */
+	@media (max-width: 768px) {
+		button, 
+		a,
+		input,
+		textarea,
+		select {
+			min-height: 44px;
+		}
+	}
 }
