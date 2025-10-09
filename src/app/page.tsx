@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
 	Building2,
 	Hammer,
@@ -104,15 +105,70 @@ const services = [
 	},
 ]
 
+const ongoingProjects = [
+	{
+		title: 'Palazzo Zanca',
+		description:
+			'Progetto di restauro conservativo e consolidamento ' +
+			'strutturale del Palazzo Zanca, sede del Comune di Messina.',
+		image:
+			'https://images.unsplash.com/photo-1511818966892-d7d671e672a2' +
+			'?w=800&h=600&fit=crop',
+		href: '/progetti/palazzo-zanca',
+		icon: <Hammer className='h-7 w-7' />,
+	},
+	{
+		title: 'Hotel Wagner',
+		description:
+			'Riqualificazione e rifunzionalizzazione dell\'Hotel ' +
+			'Wagner nel centro storico di Palermo.',
+		image:
+			'https://images.unsplash.com/photo-1566073771259-6a8506099945' +
+			'?w=800&h=600&fit=crop',
+		href: '/progetti/hotel-wagner',
+		icon: <Hotel className='h-7 w-7' />,
+	},
+	{
+		title: 'Sant\'Ignazio all\'Olivella',
+		description:
+			'Intervento di restauro e valorizzazione della Chiesa ' +
+			'di Sant\'Ignazio all\'Olivella a Palermo.',
+		image:
+			'https://images.unsplash.com/photo-1502602898657-3e91760cbb34' +
+			'?w=800&h=600&fit=crop',
+		href: '/progetti/sant-ignazio-olivella',
+		icon: <Hammer className='h-7 w-7' />,
+	},
+	{
+		title: 'Centro del Marmo',
+		description:
+			'Riqualificazione area industriale dismessa per la ' +
+			'creazione di un centro espositivo e formativo.',
+		image:
+			'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab' +
+			'?w=800&h=600&fit=crop',
+		href: '/progetti/centro-del-marmo',
+		icon: <Recycle className='h-7 w-7' />,
+	},
+]
+
 export default function HomePage() {
   return (
 		<div className='flex flex-col'>
 			{/* Hero Section */}
-			<section
-				className='relative overflow-hidden
-					bg-gradient-to-br from-primary/5 via-background
-					to-accent/5 py-20 md:py-32'
-			>
+			<section className='relative overflow-hidden py-20 md:py-32'>
+				{/* Background Image */}
+				<div className='absolute inset-0 z-0'>
+					<Image
+						src='/hero.avif'
+						alt='Mediterranea Engineering'
+						fill
+						className='object-cover'
+						priority
+						quality={90}
+					/>
+				</div>
+
 				<div className='container relative z-10 mx-auto px-4'>
 					<div className='mx-auto max-w-4xl text-center'>
 						<motion.div
@@ -121,10 +177,18 @@ export default function HomePage() {
 							transition={{ duration: 0.6 }}
 							className='mb-6 inline-flex items-center gap-2'
 						>
-							<Badge variant='outline' className='text-sm'>
+							<Badge
+								variant='outline'
+								className='border-white/40 bg-black/30
+									text-sm text-white backdrop-blur-sm'
+							>
 								Dal 1997
 							</Badge>
-							<Badge variant='outline' className='text-sm'>
+							<Badge
+								variant='outline'
+								className='border-white/40 bg-black/30
+									text-sm text-white backdrop-blur-sm'
+							>
 								ISO 9001:2015
 							</Badge>
 						</motion.div>
@@ -136,16 +200,15 @@ export default function HomePage() {
 							className='mb-6 text-4xl font-bold
 								tracking-tight sm:text-5xl md:text-6xl
 								lg:text-7xl'
+							style={{
+								textShadow: '2px 2px 4px rgba(0,0,0,0.3), 0 0 40px rgba(0,0,0,0.2)'
+							}}
 						>
-							<span
-								className='bg-gradient-to-r from-primary
-									to-accent bg-clip-text
-									text-transparent'
-							>
+							<span className='text-white'>
 								MEDITERRANEA
 							</span>
 							<br />
-							<span className='text-foreground'>ENGINEERING</span>
+							<span className='text-white'>ENGINEERING</span>
 						</motion.h1>
 
 						<motion.div
@@ -153,20 +216,20 @@ export default function HomePage() {
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6, delay: 0.2 }}
 							className='mb-8'
+							style={{
+								textShadow: '1px 1px 3px rgba(0,0,0,0.5), 0 0 20px rgba(0,0,0,0.3)'
+							}}
 						>
 							<p
 								className='mx-auto max-w-2xl text-lg
-									text-muted-foreground md:text-xl'
+									text-white/90 md:text-xl'
 							>
 								L&apos;arte è ricerca continua, assimilazione
 								delle esperienze passate, aggiunta di
 								esperienze nuove, nella forma, nel contenuto,
 								nella materia, nella tecnica, nei mezzi.
 							</p>
-							<p
-								className='mt-4 text-sm italic
-									text-muted-foreground'
-							>
+							<p className='mt-4 text-sm italic text-white/80'>
 								— Bruno Munari
 							</p>
 						</motion.div>
@@ -194,83 +257,141 @@ export default function HomePage() {
 						</motion.div>
 					</div>
 				</div>
-
-				{/* Decorative Elements */}
-				<div
-					className='absolute left-0 top-0 -z-0 h-full w-full
-						opacity-20'
-				>
-					<motion.div
-						animate={{
-							scale: [1, 1.2, 1],
-							rotate: [0, 90, 0],
-						}}
-						transition={{
-							duration: 20,
-							repeat: Infinity,
-							ease: 'linear',
-						}}
-						className='absolute -left-20 -top-20 h-96 w-96
-							rounded-full bg-primary/10 blur-3xl'
-					/>
-					<motion.div
-						animate={{
-							scale: [1, 1.3, 1],
-							rotate: [0, -90, 0],
-						}}
-						transition={{
-							duration: 25,
-							repeat: Infinity,
-							ease: 'linear',
-						}}
-						className='absolute -bottom-20 -right-20 h-96
-							w-96 rounded-full bg-accent/10 blur-3xl'
-					/>
-				</div>
 			</section>
 
 			{/* About Section */}
 			<AnimatedSection className='py-16 md:py-24'>
 				<div className='container mx-auto px-4'>
-					<div className='mx-auto max-w-4xl text-center'>
-						<h2 className='mb-6 text-3xl font-bold md:text-4xl'>
-							Chi Siamo
-						</h2>
-						<Separator className='mx-auto mb-8 w-24' />
+					<div className='mx-auto max-w-7xl'>
 						<div
-							className='space-y-4 text-lg leading-relaxed
-								text-muted-foreground'
+							className='grid gap-8 lg:grid-cols-2 lg:gap-12
+								xl:gap-16'
 						>
-							<p>
-								La{' '}
-								<strong className='text-foreground'>
-									Mediterranea Engineering
-								</strong>{' '}
-								è una società di ingegneria e consulenza
-								tecnico-economica con sede legale ed
-								amministrativa in Piazza Leoni, 3, Palermo.
-							</p>
-							<p>
-								La Società, nata nel 1997, fornisce servizi di
-								ingegneria, architettura e consulenza,
-								sfruttando al massimo l&apos;integrazione
-								delle singole e specifiche capacità
-								professionali.
-							</p>
-							<p>
-								La Mediterranea Engineering per la realizzazione
-								delle attività commissionatele si avvale delle
-								competenze multidisciplinari, presenti
-								nell&apos;attuale compagine societaria e di una
-								rete di professionisti con competenze
-								specifiche che vengono coinvolti sui singoli
-								progetti in funzione delle caratteristiche degli
-								stessi.
-							</p>
+							{/* Text Content */}
+							<div className='flex flex-col justify-center'>
+								<h2
+									className='mb-6 text-3xl font-bold
+										md:text-4xl'
+								>
+									Chi Siamo
+								</h2>
+								<Separator className='mb-8 w-24' />
+								<div
+									className='space-y-4 text-lg leading-relaxed
+										text-muted-foreground'
+								>
+									<p>
+										La{' '}
+										<strong className='text-foreground'>
+											Mediterranea Engineering
+										</strong>{' '}
+										è una società di ingegneria e consulenza
+										tecnico-economica con sede legale ed
+										amministrativa in Piazza Leoni, 3,
+										Palermo.
+									</p>
+									<p>
+										La Società, nata nel 1997, fornisce
+										servizi di ingegneria, architettura e
+										consulenza, sfruttando al massimo
+										l&apos;integrazione delle singole e
+										specifiche capacità professionali.
+									</p>
+									<p>
+										La Mediterranea Engineering per la
+										realizzazione delle attività
+										commissionatele si avvale delle
+										competenze multidisciplinari, presenti
+										nell&apos;attuale compagine societaria e
+										di una rete di professionisti con
+										competenze specifiche che vengono
+										coinvolti sui singoli progetti in
+										funzione delle caratteristiche degli
+										stessi.
+									</p>
+								</div>
+							</div>
+
+							{/* Image */}
+							<div className='relative h-[400px] lg:h-full'>
+								<Image
+									src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop'
+									alt='Team di ingegneria al lavoro'
+									fill
+									className='rounded-lg object-cover
+										shadow-xl'
+								/>
+							</div>
 						</div>
 					</div>
-        </div>
+				</div>
 			</AnimatedSection>
+
+			{/* Progetti in Corso Section */}
+			<section className='py-16 md:py-24'>
+				<div className='container mx-auto px-4'>
+					<AnimatedSection className='mb-12 text-center'>
+						<h2 className='mb-6 text-3xl font-bold md:text-4xl'>
+							Progetti in Corso
+						</h2>
+						<Separator className='mx-auto mb-4 w-24' />
+						<p
+							className='mx-auto max-w-2xl text-lg
+								text-muted-foreground'
+						>
+							I nostri progetti attualmente in fase di realizzazione
+						</p>
+					</AnimatedSection>
+
+					{/* Horizontal Scrollable Container */}
+					<div className='relative -mx-4 px-4'>
+						<div
+							className='flex gap-6 overflow-x-auto py-4 pb-8
+								scrollbar-thin scrollbar-thumb-primary/20
+								scrollbar-track-transparent hover:scrollbar-thumb-primary/40
+								md:gap-8'
+							style={{
+								scrollSnapType: 'x mandatory',
+								WebkitOverflowScrolling: 'touch',
+							}}
+						>
+							{ongoingProjects.map((project, index) => (
+								<div
+									key={project.href}
+									className='flex-none w-[85vw] sm:w-[70vw]
+										md:w-[45vw] lg:w-[30vw]'
+									style={{ scrollSnapAlign: 'start' }}
+								>
+									<FeatureCard
+										{...project}
+										delay={index * 0.1}
+									/>
+								</div>
+							))}
+						</div>
+					</div>
+
+					{/* View All Projects Button */}
+					<AnimatedSection className='mt-8 text-center'>
+						<Button asChild size='lg' variant='outline'>
+							<Link href='/progetti'>
+								Vedi tutti i progetti
+								<motion.span
+									className='ml-2 inline-block'
+									animate={{ x: [0, 5, 0] }}
+									transition={{
+										duration: 1.5,
+										repeat: Infinity,
+										ease: 'easeInOut',
+									}}
+								>
+									→
+								</motion.span>
+							</Link>
+						</Button>
+					</AnimatedSection>
+				</div>
+			</section>
 
 			{/* Services Section */}
 			<section className='bg-muted/30 py-16 md:py-24'>
@@ -300,36 +421,6 @@ export default function HomePage() {
 				</div>
 				</div>
 			</section>
-
-			{/* CTA Section */}
-			<AnimatedSection className='py-16 md:py-24'>
-				<div className='container mx-auto px-4'>
-					<div
-						className='mx-auto max-w-4xl rounded-2xl
-							bg-gradient-to-r from-primary to-accent p-8
-							text-center text-primary-foreground md:p-12'
-					>
-						<h2 className='mb-4 text-3xl font-bold md:text-4xl'>
-							Hai un progetto in mente?
-						</h2>
-						<p className='mb-8 text-lg opacity-90'>
-							Contattaci per una consulenza personalizzata e
-							scopri come possiamo aiutarti a realizzare le tue
-							idee.
-						</p>
-						<Button
-							asChild
-							size='lg'
-							variant='secondary'
-							className='min-w-[200px]'
-						>
-							<Link href='/contatti'>
-								Richiedi una consulenza
-							</Link>
-						</Button>
-					</div>
-				</div>
-			</AnimatedSection>
     </div>
 	)
 }

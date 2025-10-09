@@ -168,10 +168,7 @@ export default function RestauroPage() {
 					</p>
 				</AnimatedSection>
 
-				<div
-					className='grid gap-6 md:grid-cols-2
-						lg:grid-cols-3'
-				>
+				<div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
 					{projects.map((project, index) => (
 						<FeatureCard
 							key={project.href}

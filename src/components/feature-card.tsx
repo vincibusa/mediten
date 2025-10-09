@@ -34,6 +34,14 @@ export function FeatureCard({
 				delay,
 				ease: 'easeOut',
 			}}
+			whileHover={{
+				y: -12,
+				transition: {
+					type: 'spring',
+					stiffness: 300,
+					damping: 20,
+				},
+			}}
 			className='group h-full'
 		>
 			<Link
@@ -42,31 +50,51 @@ export function FeatureCard({
 				className='block h-full focus:outline-none focus:ring-2
 					focus:ring-primary focus:ring-offset-2 rounded-xl'
 			>
-				<Card
-					className='relative h-full min-h-[400px] overflow-hidden
-						border-2 p-0 transition-all duration-300
-						hover:border-primary hover:shadow-2xl
-						focus-within:border-primary focus-within:shadow-2xl'
+				<motion.div
+					whileHover={{
+						boxShadow:
+							'0 25px 50px -12px rgba(0, 0, 0, 0.4), ' +
+							'0 0 40px rgba(var(--primary-rgb), 0.3)',
+					}}
+					transition={{ duration: 0.3 }}
 				>
+					<Card
+						className='relative h-full min-h-[400px] overflow-hidden
+							border-2 p-0 transition-all duration-300
+							hover:border-primary focus-within:border-primary
+							will-change-transform'
+					>
 					{/* Background Image */}
 					<div className='absolute inset-0'>
-						<Image
-							src={image}
-							alt={`Immagine rappresentativa di ${title}`}
-							fill
-							sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-							className='object-cover transition-transform
-								duration-700 group-hover:scale-110
-								motion-reduce:transition-none
-								motion-reduce:group-hover:scale-100'
-						/>
+						<motion.div
+							className='h-full w-full'
+							whileHover={{
+								scale: 1.15,
+							}}
+							transition={{
+								duration: 0.6,
+								ease: 'easeOut',
+							}}
+						>
+							<Image
+								src={image}
+								alt={`Immagine rappresentativa di ${title}`}
+								fill
+								sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+								className='object-cover'
+							/>
+						</motion.div>
 						{/* Gradient Overlay - Migliore contrasto */}
-						<div
+						<motion.div
 							className='absolute inset-0 bg-gradient-to-t
-								from-black/90 via-black/60 to-black/30
-								transition-opacity duration-300
-								group-hover:from-black/95
-								group-hover:via-black/70'
+								from-black/90 via-black/60 to-black/30'
+							whileHover={{
+								background: [
+									'linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.6), rgba(0,0,0,0.3))',
+									'linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.75), rgba(0,0,0,0.4))',
+								],
+							}}
+							transition={{ duration: 0.3 }}
 						/>
 					</div>
 
@@ -102,57 +130,78 @@ export function FeatureCard({
 
 					{/* Text Content */}
 					<div className='mt-auto space-y-4'>
-						<h3
-							className='text-2xl font-bold leading-tight
-								text-shadow-lg transition-transform
-								duration-300 group-hover:translate-x-1
-								md:text-3xl motion-reduce:transition-none
-								motion-reduce:group-hover:translate-x-0'
+						<motion.h3
+							className='line-clamp-2 text-2xl font-bold
+								leading-tight text-shadow-lg md:text-3xl'
 							style={{
 								textShadow: '0 2px 8px rgba(0,0,0,0.5)',
 							}}
+							whileHover={{
+								x: 8,
+								scale: 1.02,
+							}}
+							transition={{
+								type: 'spring',
+								stiffness: 400,
+								damping: 25,
+							}}
 						>
 							{title}
-						</h3>
-						<p
+						</motion.h3>
+						<motion.p
 							className='line-clamp-3 text-sm leading-relaxed
-								text-white transition-all duration-300
-								group-hover:text-white md:text-base
-								motion-reduce:transition-none'
+								text-white md:text-base'
 							style={{
 								textShadow: '0 1px 4px rgba(0,0,0,0.5)',
 							}}
+							whileHover={{
+								opacity: 1,
+								y: -2,
+							}}
+							transition={{ duration: 0.3 }}
 						>
 							{description}
-						</p>
+						</motion.p>
 
 						{/* CTA Button - Visible on mobile */}
-						<Button
-							variant='secondary'
-							className='mt-4 w-full opacity-0 transition-all
-								duration-300 group-hover:opacity-100
-								sm:w-auto md:opacity-100 lg:opacity-0
-								lg:group-hover:opacity-100
-								motion-reduce:opacity-100'
-							tabIndex={-1}
-							aria-hidden='true'
+						<motion.div
+							initial={{ opacity: 0, y: 10 }}
+							whileHover={{
+								opacity: 1,
+								y: 0,
+								scale: 1.05,
+							}}
+							transition={{
+								duration: 0.3,
+								ease: 'easeOut',
+							}}
+							className='opacity-0 group-hover:opacity-100
+								md:opacity-100 lg:opacity-0
+								lg:group-hover:opacity-100'
 						>
-							Scopri di più
-							<motion.span
-								className='ml-2 inline-block'
-								initial={{ x: 0 }}
-								whileHover={{ x: 5 }}
-								transition={{
-									type: 'spring',
-									stiffness: 300,
-								}}
+							<Button
+								variant='secondary'
+								className='mt-4 w-full sm:w-auto'
+								tabIndex={-1}
+								aria-hidden='true'
 							>
-								<ArrowRight className='h-4 w-4' />
-							</motion.span>
-						</Button>
+								Scopri di più
+								<motion.span
+									className='ml-2 inline-block'
+									whileHover={{ x: 5 }}
+									transition={{
+										type: 'spring',
+										stiffness: 300,
+									}}
+								>
+									<ArrowRight className='h-4 w-4' />
+								</motion.span>
+							</Button>
+						</motion.div>
 					</div>
 					</div>
 				</Card>
+				</motion.div>
 			</Link>
 		</motion.div>
 	)

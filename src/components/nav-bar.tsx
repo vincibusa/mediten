@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
 	Menu,
@@ -65,24 +66,19 @@ export function NavBar() {
 			<div className='container mx-auto px-4'>
 				<div className='flex h-20 items-center justify-between'>
 					{/* Logo */}
-					<Link href='/' className='flex items-center space-x-2'>
+					<Link href='/' className='flex items-center'>
 						<motion.div
 							whileHover={{ scale: 1.05 }}
 							whileTap={{ scale: 0.95 }}
-							className='flex flex-col'
+							className='relative h-12 w-40'
 						>
-							<span
-								className='text-xl font-bold tracking-tight
-									text-primary'
-							>
-								MEDITERRANEA
-							</span>
-							<span
-								className='text-xs font-medium
-									text-muted-foreground'
-							>
-								ENGINEERING
-							</span>
+							<Image
+								src='/logo.avif'
+								alt='Mediterranea Engineering Logo'
+								fill
+								className='object-contain object-left'
+								priority
+							/>
 						</motion.div>
 					</Link>
 
@@ -177,19 +173,13 @@ export function NavBar() {
 						<SheetContent side='right' className='w-80'>
 							<SheetHeader>
 								<SheetTitle className='text-left'>
-									<div className='flex flex-col'>
-										<span
-											className='text-xl font-bold
-												tracking-tight text-primary'
-										>
-											MEDITERRANEA
-										</span>
-										<span
-											className='text-xs font-medium
-												text-muted-foreground'
-										>
-											ENGINEERING
-										</span>
+									<div className='relative h-10 w-36'>
+										<Image
+											src='/logo.avif'
+											alt='Mediterranea Engineering Logo'
+											fill
+											className='object-contain object-left'
+										/>
 									</div>
 								</SheetTitle>
 							</SheetHeader>
