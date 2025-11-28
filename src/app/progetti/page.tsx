@@ -1,204 +1,192 @@
 'use client'
-
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import {
-	Building2,
-	Hammer,
-	Recycle,
-	Hotel,
-	Droplet,
-	Zap,
-	Briefcase,
-} from 'lucide-react'
-import { AnimatedSection } from '@/components/animated-section'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { projects } from '@/data/projects'
 import { FeatureCard } from '@/components/feature-card'
-import { Separator } from '@/components/ui/separator'
+import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from '@/components/ui/select'
 
-const architectureServices = [
-	{
-		title: 'Restauro',
-		description:
-			'Restauro conservativo e recupero di edifici' +
-			' monumentali pubblici e privati',
-		href: '/restauro',
-		image:
-			'https://images.unsplash.com/photo-1558618666-fcd25c85cd64' +
-			'?w=800&h=600&fit=crop',
-		icon: <Hammer className='h-7 w-7' />,
-	},
-	{
-		title: 'Riqualificazione',
-		description:
-			'Riqualificazione urbana e valorizzazione delle' +
-			' aree archeologiche e storiche',
-		href: '/riqualificazione',
-		image:
-			'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab' +
-			'?w=800&h=600&fit=crop',
-		icon: <Recycle className='h-7 w-7' />,
-	},
-	{
-		title: 'Edilizia',
-		description:
-			'Edilizia pubblica e privata, ristrutturazioni e' +
-			' risanamento strutturale',
-		href: '/edilizia',
-		image:
-			'https://images.unsplash.com/photo-1503387762-592deb58ef4e' +
-			'?w=800&h=600&fit=crop',
-		icon: <Building2 className='h-7 w-7' />,
-	},
-	{
-		title: 'Turismo',
-		description:
-			'Valorizzazione turistica aree urbane e centri' +
-			' storici',
-		href: '/turismo',
-		image:
-			'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb' +
-			'?w=800&h=600&fit=crop',
-		icon: <Hotel className='h-7 w-7' />,
-	},
-	{
-		title: 'Idraulica',
-		description:
-			'Opere idrauliche e gestione sostenibile delle' +
-			' risorse idriche',
-		href: '/idraulica',
-		image:
-			'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789' +
-			'?w=800&h=600&fit=crop',
-		icon: <Droplet className='h-7 w-7' />,
-	},
-	{
-		title: 'Energia',
-		description:
-			'Energie rinnovabili, efficientamento e' +
-			' sostenibilità energetica',
-		href: '/energia',
-		image:
-			'https://images.unsplash.com/photo-1509391366360-2e959784a276' +
-			'?w=800&h=600&fit=crop',
-		icon: <Zap className='h-7 w-7' />,
-	},
-	{
-		title: 'Consulting',
-		description:
-			'Consulenza tecnico-economica e sviluppo' +
-			' territoriale integrato',
-		href: '/consulting',
-		image:
-			'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40' +
-			'?w=800&h=600&fit=crop',
-		icon: <Briefcase className='h-7 w-7' />,
-	},
+const categories = [
+	'Tutti',
+	'Restauro',
+	'Riqualificazione',
+	'Edilizia',
+	'Turismo',
+	'Consulting',
+]
+
+const consultingSubCategories = [
+	'Tutti',
+	'Sviluppo Territoriale',
+	'Studi di Fattibilità',
+	'Progetti Agevolati',
+	'Sicurezza D.Lgs 81/2008',
 ]
 
 export default function ProgettiPage() {
+	const [activeCategory, setActiveCategory] = useState('Tutti')
+	const [activeSubCategory, setActiveSubCategory] = useState('Tutti')
+
+	const filteredProjects = projects.filter((project) => {
+		// First filter by main category
+		if (activeCategory !== 'Tutti' && project.category !== activeCategory) {
+			return false
+		}
+
+		// If Consulting is active, filter by sub-category
+		if (activeCategory === 'Consulting') {
+			if (activeSubCategory === 'Tutti') return true
+			return project.subCategory === activeSubCategory
+		}
+
+		return true
+	})
+
+	const handleCategoryChange = (category: string) => {
+		setActiveCategory(category)
+		setActiveSubCategory('Tutti') // Reset sub-category when changing main category
+	}
+
 	return (
-		<div className='flex flex-col'>
-			<section
-				className='relative overflow-hidden
-					bg-gradient-to-br from-primary/5 via-background
-					to-accent/5 py-20 md:py-32'
-			>
-				<div className='container relative z-10 mx-auto px-4'>
-					<div className='mx-auto max-w-4xl text-center'>
-						<motion.h1
-							initial={{ opacity: 0, y: 20 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.6 }}
-							className='mb-6 text-4xl font-bold
-								tracking-tight sm:text-5xl md:text-6xl'
-						>
+		<div className='relative min-h-screen overflow-hidden pt-24 md:pt-32'>
+			{/* Background Elements */}
+			<div className='pointer-events-none absolute inset-0 -z-10 overflow-hidden'>
+				<div className='absolute -top-[20%] left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-primary/5 blur-3xl' />
+				<div className='absolute top-[10%] right-0 h-[400px] w-[400px] rounded-full bg-accent/5 blur-3xl' />
+			</div>
+
+			<div className='container mx-auto px-4'>
+				<div className='mb-16 flex flex-col items-center justify-center space-y-8 text-center'>
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.6 }}
+						className='space-y-4'
+					>
+						<h1 className='bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-4xl font-bold tracking-tight text-transparent sm:text-5xl md:text-6xl'>
 							I Nostri Progetti
-						</motion.h1>
-
-						<motion.p
-							initial={{ opacity: 0, y: 20 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.6, delay: 0.1 }}
-							className='mx-auto max-w-2xl text-lg
-								text-muted-foreground md:text-xl'
-						>
-							La Mediterranea Engineering S.r.l., opera nei
-							settori della progettazione, direzione lavori e
-							collaudo delle opere di ingegneria, architettura,
-							urbanistica e della progettazione integrata.
-						</motion.p>
-					</div>
-				</div>
-			</section>
-
-			<AnimatedSection className='py-16 md:py-24'>
-				<div className='container mx-auto px-4'>
-					<div className='mx-auto max-w-4xl text-center'>
-						<h2 className='mb-6 text-3xl font-bold'>
-							Architecture & Engineering
-						</h2>
-						<Separator className='mx-auto mb-8 w-24' />
-						<p className='text-lg text-muted-foreground'>
-							La Società si avvale di uno staff professionale di
-							architetti, ingegneri ed altri esperti
-							specializzati nelle varie discipline in grado di far
-							fronte ai servizi richiesti per lo studio, la
-							ricerca, la pianificazione, la progettazione, la
-							costruzione ed il controllo qualità di progetti su
-							vasta scala.
+						</h1>
+						<p className='mx-auto max-w-2xl text-lg text-muted-foreground md:text-xl'>
+							Esplora il nostro portfolio filtrando per categoria
+							di intervento. Ogni progetto racconta una storia di
+							eccellenza e innovazione.
 						</p>
-					</div>
-				</div>
-			</AnimatedSection>
+					</motion.div>
 
-			<section className='bg-muted/30 py-16 md:py-24'>
-				<div className='container mx-auto px-4'>
-					<AnimatedSection className='mb-12 text-center'>
-						<h2 className='mb-6 text-3xl font-bold'>
-							Esplora i Progetti per Settore
-						</h2>
-						<Separator className='mx-auto mb-4 w-24' />
-					</AnimatedSection>
-
-				<div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
-					{architectureServices.map((service, index) => (
-						<FeatureCard
-							key={service.href}
-							{...service}
-							delay={index * 0.1}
-						/>
-					))}
-				</div>
-				</div>
-			</section>
-
-			<AnimatedSection className='py-16 md:py-24'>
-				<div className='container mx-auto px-4'>
-					<div className='mx-auto max-w-4xl text-center'>
-						<h2 className='mb-6 text-3xl font-bold'>Consulting</h2>
-						<Separator className='mx-auto mb-8 w-24' />
-						<p className='mb-8 text-lg text-muted-foreground'>
-							La Società svolge anche attività di consulenza ed
-							assistenza di carattere tecnico, economico,
-							finanziario, organizzativo nei confronti di soggetti
-							pubblici e privati. I suoi interlocutori principali
-							sono gli organi della Pubblica Amministrazione e le
-							istituzioni nazionali impegnate nella
-							programmazione e nella realizzazione di interventi a
-							scala territoriale.
-						</p>
-						<Link
-							href='/consulting'
-							className='inline-block text-lg font-medium
-								text-primary underline-offset-4
-								hover:underline'
+					{/* Filters */}
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.6, delay: 0.2 }}
+						className='flex flex-col items-center gap-4 sm:flex-row'
+					>
+						{/* Main Category Filter */}
+						<Select
+							value={activeCategory}
+							onValueChange={handleCategoryChange}
 						>
-							Scopri i nostri servizi di consulenza →
-						</Link>
-					</div>
+							<SelectTrigger className='w-[200px] rounded-full bg-background/60 backdrop-blur-sm'>
+								<SelectValue placeholder='Categoria' />
+							</SelectTrigger>
+							<SelectContent>
+								{categories.map((category) => (
+									<SelectItem key={category} value={category}>
+										{category}
+									</SelectItem>
+								))}
+							</SelectContent>
+						</Select>
+
+						{/* Sub Category Filter (Consulting) */}
+						<AnimatePresence mode='popLayout'>
+							{activeCategory === 'Consulting' && (
+								<motion.div
+									initial={{ opacity: 0, scale: 0.9, width: 0 }}
+									animate={{ opacity: 1, scale: 1, width: 'auto' }}
+									exit={{ opacity: 0, scale: 0.9, width: 0 }}
+									className='overflow-hidden'
+								>
+									<Select
+										value={activeSubCategory}
+										onValueChange={setActiveSubCategory}
+									>
+										<SelectTrigger className='w-[240px] rounded-full bg-background/60 backdrop-blur-sm'>
+											<SelectValue placeholder='Tipologia Servizio' />
+										</SelectTrigger>
+										<SelectContent>
+											{consultingSubCategories.map(
+												(subCategory) => (
+													<SelectItem
+														key={subCategory}
+														value={subCategory}
+													>
+														{subCategory}
+													</SelectItem>
+												)
+											)}
+										</SelectContent>
+									</Select>
+								</motion.div>
+							)}
+						</AnimatePresence>
+					</motion.div>
 				</div>
-			</AnimatedSection>
+
+				{/* Projects Grid */}
+				<motion.div
+					layout
+					className='grid gap-8 pb-24 md:grid-cols-2 lg:grid-cols-3'
+				>
+					<AnimatePresence mode='popLayout'>
+						{filteredProjects.map((project) => (
+							<motion.div
+								layout
+								initial={{ opacity: 0, scale: 0.9, y: 20 }}
+								animate={{ opacity: 1, scale: 1, y: 0 }}
+								exit={{ opacity: 0, scale: 0.9, y: 20 }}
+								transition={{
+									duration: 0.4,
+									type: 'spring',
+									stiffness: 100,
+									damping: 15,
+								}}
+								key={project.slug}
+							>
+								<FeatureCard
+									title={project.title}
+									description={project.description}
+									image={project.heroImage}
+									href={`/progetti/${project.slug}`}
+									icon={null}
+								/>
+							</motion.div>
+						))}
+					</AnimatePresence>
+				</motion.div>
+
+				{filteredProjects.length === 0 && (
+					<motion.div
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						className='py-20 text-center'
+					>
+						<div className='mb-4 text-6xl'>🔍</div>
+						<h3 className='mb-2 text-xl font-semibold'>
+							Nessun progetto trovato
+						</h3>
+						<p className='text-muted-foreground'>
+							Prova a selezionare un'altra categoria o filtro.
+						</p>
+					</motion.div>
+				)}
+			</div>
 		</div>
 	)
 }
-

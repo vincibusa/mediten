@@ -25,7 +25,8 @@ export interface ProjectData {
 	title: string
 	heroTitle?: string
 	location: string
-	category: 'Restauro' | 'Riqualificazione' | 'Edilizia' | 'Turismo'
+	category: 'Restauro' | 'Riqualificazione' | 'Edilizia' | 'Turismo' | 'Consulting'
+	subCategory?: string
 	year?: string
 	status?: string
 	client: string
@@ -406,6 +407,119 @@ export const projects: ProjectData[] = [
 				alt: 'Palazzo Zanca - 3',
 			},
 		],
+	},
+	// Consulting Projects
+	{
+		slug: 'miur-pon-fesr',
+		title: 'Controllo I Livello MIUR PON FESR',
+		location: 'Italia',
+		category: 'Consulting',
+		subCategory: 'Progetti Agevolati',
+		client: 'MIUR',
+		description:
+			'Controllo di I livello con verifiche in loco degli interventi sugli edifici scolastici selezionati nell\'ambito del PON FESR "ambienti per l\'apprendimento" 2007-2013.',
+		backLink: '/consulting',
+		badges: ['Consulting', 'MIUR', 'PON FESR'],
+		heroImage:
+			'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop',
+	},
+	{
+		slug: 'sacal-lamezia',
+		title: 'Stima Ciclo di Vita Infrastrutture Aeroportuali',
+		location: 'Lamezia Terme',
+		category: 'Consulting',
+		subCategory: 'Studi di Fattibilità',
+		client: 'S.A.CAL',
+		description:
+			'S.A.CAL - Società di gestione dell\'areoporto di Lamezia Terme. Stima del ciclo di vita utile delle infrastrutture aeroportuali per revisione piano di ammortamento.',
+		backLink: '/consulting',
+		badges: ['Consulting', 'Aeroporti', 'Analisi'],
+		heroImage:
+			'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
+	},
+	{
+		slug: 'piano-battaglia',
+		title: 'Project Financing Piano Battaglia',
+		location: 'Piano Battaglia',
+		category: 'Consulting',
+		subCategory: 'Sviluppo Territoriale',
+		client: 'Piano Battaglia srl',
+		description:
+			'Progettazione e assistenza alle procedure di finanza di progetto relative al Piano di sviluppo integrato del comprensorio di Piano Battaglia.',
+		backLink: '/consulting',
+		badges: ['Consulting', 'Project Financing', 'Sviluppo'],
+		heroImage:
+			'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
+	},
+	{
+		slug: 'sicilia-futuro',
+		title: 'Coordinamento Sicilia Futuro',
+		location: 'Sicilia',
+		category: 'Consulting',
+		subCategory: 'Sviluppo Territoriale',
+		client: 'Regione Siciliana',
+		description:
+			'Coordinamento attività di gestione, valutazione, monitoraggio, controllo ed erogazione per SICILIA FUTURO - Organismo Intermedio. Programma Operativo Convergenza 2007-2013 - Fondo Sociale Europeo.',
+		backLink: '/consulting',
+		badges: ['Consulting', 'FSE', 'Regione Siciliana'],
+		heroImage:
+			'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
+	},
+	{
+		slug: 'misura-1-17-por',
+		title: 'Valutazione Misura 1.17 POR Sicilia',
+		location: 'Sicilia',
+		category: 'Consulting',
+		subCategory: 'Progetti Agevolati',
+		client: 'Misura 1.17 POR Sicilia',
+		description:
+			'Coordinamento attività di valutazione tecnica economica, monitoraggio ed erogazione delle iniziative imprenditoriali in Sicilia a valere sul I Bando Misura 1.17 soggetti privati.',
+		backLink: '/consulting',
+		badges: ['Consulting', 'POR Sicilia', 'Valutazione'],
+		heroImage:
+			'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop',
+	},
+	{
+		slug: 'legge-488-92',
+		title: 'Istruttoria Legge 488/92',
+		location: 'Italia',
+		category: 'Consulting',
+		subCategory: 'Progetti Agevolati',
+		client: 'Istruttoria Legge 488/92',
+		description:
+			'Coordinamento attività istruttoria Legge 488/92 19° bando Turismo e 20° bando Commercio. Coordinamento verifiche tecniche per Programmi Complessi (Patti territoriali e Contratti d\'area).',
+		backLink: '/consulting',
+		badges: ['Consulting', 'Legge 488/92', 'Istruttoria'],
+		heroImage:
+			'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop',
+	},
+	{
+		slug: 'kpmg-aoor',
+		title: 'Inventariazione Beni A.O.O.R. Papardo',
+		location: 'Messina',
+		category: 'Consulting',
+		subCategory: 'Studi di Fattibilità',
+		client: 'KPMG',
+		description:
+			'Servizio di inventariazione dei beni mobili e immobili dell\'A.O.O.R. Papardo – Piemonte di Messina per certificabilità dei bilanci.',
+		backLink: '/consulting',
+		badges: ['Consulting', 'KPMG', 'Sanità'],
+		heroImage:
+			'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
+	},
+	{
+		slug: 'prusst-palermo',
+		title: 'Assistenza PRUSST Palermo',
+		location: 'Palermo',
+		category: 'Consulting',
+		subCategory: 'Sviluppo Territoriale',
+		client: 'Regione Sicilia - KPMG',
+		description:
+			'Assistenza tecnica per l\'attuazione del PRUSST della città di Palermo e redazione studi di fattibilità (Mercato Ortofrutticolo, Centro Congressi, Costa Sud).',
+		backLink: '/consulting',
+		badges: ['Consulting', 'PRUSST', 'Palermo'],
+		heroImage:
+			'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
 	},
 ]
 

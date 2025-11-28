@@ -16,6 +16,15 @@ import { Button } from '@/components/ui/button'
 import { FeatureCard } from '@/components/feature-card'
 import { AnimatedSection } from '@/components/animated-section'
 import { Separator } from '@/components/ui/separator'
+import { useRef } from 'react'
+import Autoplay from 'embla-carousel-autoplay'
+import {
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from '@/components/ui/carousel'
 import { Badge } from '@/components/ui/badge'
 
 const services = [
@@ -153,10 +162,10 @@ const ongoingProjects = [
 ]
 
 export default function HomePage() {
-  return (
+	return (
 		<div className='flex flex-col'>
 			{/* Hero Section */}
-			<section className='relative overflow-hidden py-20 md:py-32'>
+			<section className='relative flex min-h-screen items-center justify-center overflow-hidden py-20 md:py-32'>
 				{/* Background Image */}
 				<div className='absolute inset-0 z-0'>
 					<Image
@@ -259,73 +268,6 @@ export default function HomePage() {
 				</div>
 			</section>
 
-			{/* About Section */}
-			<AnimatedSection className='py-16 md:py-24'>
-				<div className='container mx-auto px-4'>
-					<div className='mx-auto max-w-7xl'>
-						<div
-							className='grid gap-8 lg:grid-cols-2 lg:gap-12
-								xl:gap-16'
-						>
-							{/* Text Content */}
-							<div className='flex flex-col justify-center'>
-								<h2
-									className='mb-6 text-3xl font-bold
-										md:text-4xl'
-								>
-									Chi Siamo
-								</h2>
-								<Separator className='mb-8 w-24' />
-								<div
-									className='space-y-4 text-lg leading-relaxed
-										text-muted-foreground'
-								>
-									<p>
-										La{' '}
-										<strong className='text-foreground'>
-											Mediterranea Engineering
-										</strong>{' '}
-										è una società di ingegneria e consulenza
-										tecnico-economica con sede legale ed
-										amministrativa in Piazza Leoni, 3,
-										Palermo.
-									</p>
-									<p>
-										La Società, nata nel 1997, fornisce
-										servizi di ingegneria, architettura e
-										consulenza, sfruttando al massimo
-										l&apos;integrazione delle singole e
-										specifiche capacità professionali.
-									</p>
-									<p>
-										La Mediterranea Engineering per la
-										realizzazione delle attività
-										commissionatele si avvale delle
-										competenze multidisciplinari, presenti
-										nell&apos;attuale compagine societaria e
-										di una rete di professionisti con
-										competenze specifiche che vengono
-										coinvolti sui singoli progetti in
-										funzione delle caratteristiche degli
-										stessi.
-									</p>
-								</div>
-							</div>
-
-							{/* Image */}
-							<div className='relative h-[400px] lg:h-full'>
-								<Image
-									src='https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop'
-									alt='Team di ingegneria al lavoro'
-									fill
-									className='rounded-lg object-cover
-										shadow-xl'
-								/>
-							</div>
-						</div>
-					</div>
-				</div>
-			</AnimatedSection>
 
 			{/* Progetti in Corso Section */}
 			<section className='py-16 md:py-24'>
@@ -343,32 +285,67 @@ export default function HomePage() {
 						</p>
 					</AnimatedSection>
 
-					{/* Horizontal Scrollable Container */}
-					<div className='relative -mx-4 px-4'>
-						<div
-							className='flex gap-6 overflow-x-auto py-4 pb-8
-								scrollbar-thin scrollbar-thumb-primary/20
-								scrollbar-track-transparent hover:scrollbar-thumb-primary/40
-								md:gap-8'
-							style={{
-								scrollSnapType: 'x mandatory',
-								WebkitOverflowScrolling: 'touch',
+					{/* Carousel Section */}
+					<div className='relative mx-auto w-full max-w-[90vw]'>
+						<Carousel
+							plugins={[
+								Autoplay({
+									delay: 4000,
+								}),
+							]}
+							className='w-full'
+							opts={{
+								align: 'center',
+								loop: true,
 							}}
 						>
-							{ongoingProjects.map((project, index) => (
-								<div
-									key={project.href}
-									className='flex-none w-[85vw] sm:w-[70vw]
-										md:w-[45vw] lg:w-[30vw]'
-									style={{ scrollSnapAlign: 'start' }}
-								>
-									<FeatureCard
-										{...project}
-										delay={index * 0.1}
-									/>
-								</div>
-							))}
-						</div>
+							<CarouselContent>
+								{ongoingProjects.map((project, index) => (
+									<CarouselItem key={project.href}>
+										<div className='relative h-[80vh] w-full overflow-hidden rounded-3xl'>
+											<Image
+												src={project.image}
+												alt={project.title}
+												fill
+												className='object-cover transition-transform duration-700 hover:scale-105'
+											/>
+											<div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent' />
+											<div className='absolute bottom-0 left-0 p-8 md:p-12'>
+												<motion.div
+													initial={{ opacity: 0, y: 20 }}
+													whileInView={{ opacity: 1, y: 0 }}
+													transition={{ delay: 0.2 }}
+												>
+													<div className='mb-4 flex items-center gap-2 text-primary'>
+														{project.icon}
+														<span className='text-sm font-medium uppercase tracking-wider text-white/80'>
+															In Corso
+														</span>
+													</div>
+													<h3 className='mb-4 text-3xl font-bold text-white md:text-5xl'>
+														{project.title}
+													</h3>
+													<p className='max-w-xl text-lg text-white/90 md:text-xl'>
+														{project.description}
+													</p>
+													<Button
+														asChild
+														className='mt-6'
+														variant='secondary'
+													>
+														<Link href={project.href}>
+															Vedi Progetto
+														</Link>
+													</Button>
+												</motion.div>
+											</div>
+										</div>
+									</CarouselItem>
+								))}
+							</CarouselContent>
+							<CarouselPrevious className='left-4 hidden md:flex' />
+							<CarouselNext className='right-4 hidden md:flex' />
+						</Carousel>
 					</div>
 
 					{/* View All Projects Button */}
@@ -393,34 +370,7 @@ export default function HomePage() {
 				</div>
 			</section>
 
-			{/* Services Section */}
-			<section className='bg-muted/30 py-16 md:py-24'>
-				<div className='container mx-auto px-4'>
-					<AnimatedSection className='mb-12 text-center'>
-						<h2 className='mb-6 text-3xl font-bold md:text-4xl'>
-							Settori d&apos;Intervento
-						</h2>
-						<Separator className='mx-auto mb-4 w-24' />
-						<p
-							className='mx-auto max-w-2xl text-lg
-								text-muted-foreground'
-						>
-							Offriamo soluzioni integrate nei principali settori
-							dell&apos;ingegneria e dell&apos;architettura
-						</p>
-					</AnimatedSection>
 
-				<div className='grid gap-6 md:grid-cols-2 lg:grid-cols-3'>
-					{services.map((service, index) => (
-						<FeatureCard
-							key={service.href}
-							{...service}
-							delay={index * 0.1}
-						/>
-					))}
-				</div>
-				</div>
-			</section>
-    </div>
+		</div>
 	)
 }
