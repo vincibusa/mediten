@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
@@ -28,7 +28,7 @@ export function ImageComparisonSlider({
 	const [isDragging, setIsDragging] = useState(false)
 	const containerRef = useRef<HTMLDivElement>(null)
 
-	const handleMove = (clientX: number) => {
+	const handleMove = useCallback((clientX: number) => {
 		if (!containerRef.current) return
 
 		const rect = containerRef.current.getBoundingClientRect()
@@ -36,25 +36,25 @@ export function ImageComparisonSlider({
 		const percentage = (x / rect.width) * 100
 
 		setSliderPosition(Math.min(Math.max(percentage, 0), 100))
-	}
+	}, [])
 
 	const handleMouseDown = () => {
 		setIsDragging(true)
 	}
 
-	const handleMouseUp = () => {
+	const handleMouseUp = useCallback(() => {
 		setIsDragging(false)
-	}
+	}, [])
 
-	const handleMouseMove = (e: MouseEvent) => {
+	const handleMouseMove = useCallback((e: MouseEvent) => {
 		if (!isDragging) return
 		handleMove(e.clientX)
-	}
+	}, [isDragging, handleMove])
 
-	const handleTouchMove = (e: TouchEvent) => {
+	const handleTouchMove = useCallback((e: TouchEvent) => {
 		if (!isDragging) return
 		handleMove(e.touches[0].clientX)
-	}
+	}, [isDragging, handleMove])
 
 	useEffect(() => {
 		if (isDragging) {
@@ -70,13 +70,13 @@ export function ImageComparisonSlider({
 			document.removeEventListener('touchmove', handleTouchMove)
 			document.removeEventListener('touchend', handleMouseUp)
 		}
-	}, [isDragging])
+	}, [isDragging, handleMouseMove, handleTouchMove, handleMouseUp])
 
 	return (
-		<AnimatedSection className='py-16 md:py-24'>
+		<AnimatedSection className='py-20 md:py-32'>
 			<div className='container mx-auto px-4'>
 				<div className='mb-12 text-center'>
-					<h2 className='mb-4 text-3xl font-bold'>{title}</h2>
+					<h2 className='mb-4 text-3xl font-bold md:text-4xl'>{title}</h2>
 					<Separator className='mx-auto mb-4 w-24' />
 					{subtitle && (
 						<p className='text-muted-foreground'>{subtitle}</p>

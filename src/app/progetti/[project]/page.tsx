@@ -43,14 +43,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 		notFound()
 	}
 
-	const categoryLabels = {
-		Restauro: 'Restauro',
-		Riqualificazione: 'Riqualificazione',
-		Edilizia: 'Edilizia',
-		Turismo: 'Turismo',
-	}
-
-	const backLinkText = `Torna ai progetti di ${categoryLabels[project.category]}`
 
 	const ctaDescriptions = {
 		Restauro: 'Contattaci per discutere del tuo progetto di restauro conservativo',
@@ -59,13 +51,15 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 		Edilizia: 'Contattaci per discutere del tuo progetto edilizio',
 		Turismo:
 			'Contattaci per discutere del tuo progetto di riqualificazione turistica',
+		Consulting: 'Contattaci per discutere del tuo progetto di consulenza',
 	}
 
-	const featuresTitles = {
+	const featuresTitles: Record<string, string> = {
 		Restauro: 'Interventi Realizzati',
 		Riqualificazione: 'Interventi Realizzati',
 		Edilizia: 'Interventi Realizzati',
 		Turismo: 'Distribuzione Funzionale',
+		Consulting: 'Interventi Realizzati',
 	}
 
 	const featuresSubtitles = {
@@ -77,6 +71,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 		Riqualificazione: 'Gallery',
 		Edilizia: 'Gallery',
 		Turismo: 'Gallery del Progetto',
+		Consulting: 'Gallery',
 	}
 
 	const gallerySubtitles = {
@@ -91,10 +86,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 				location={project.location}
 				client={project.client}
 				year={project.year}
-				badges={project.badges}
+			
 				heroImage={project.heroImage}
-				backLink={project.backLink}
-				backLinkText={backLinkText}
+			
 			/>
 
 			<ProjectDescription

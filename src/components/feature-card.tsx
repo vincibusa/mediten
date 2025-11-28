@@ -3,9 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
 import { Card } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
 
 interface FeatureCardProps {
 	title: string
@@ -38,7 +36,7 @@ export function FeatureCard({
 		>
 			<Link
 				href={href}
-				aria-label={`Scopri di più su ${title}`}
+				aria-label={`Apri la scheda di ${title}`}
 				className='block h-full rounded-xl focus:outline-none focus:ring-2
 					focus:ring-primary focus:ring-offset-2'
 			>
@@ -68,22 +66,26 @@ export function FeatureCard({
 									className='object-cover'
 								/>
 							</motion.div>
-							{/* Gradient Overlay - Red on Hover */}
-							<motion.div
+
+							{/* Base Gradient Overlay */}
+							<div
 								className='absolute inset-0 bg-gradient-to-t
 									from-black/90 via-black/60 to-black/30'
-								whileHover={{
-									backgroundColor: 'rgba(220, 38, 38, 0.85)', // Red overlay
-									backgroundImage: 'none',
-								}}
-								transition={{ duration: 0.3 }}
+							/>
+							{/* Red Gradient Overlay - Expands from bottom on hover */}
+							<div
+								className='absolute inset-0 bg-gradient-to-t
+									from-primary/90 via-primary/70 to-primary/30
+									origin-bottom scale-y-0 transition-transform
+									duration-700 ease-in-out
+									group-hover:scale-y-100'
 							/>
 						</div>
 
 						{/* Content */}
 						<div
 							className='relative z-10 flex h-full flex-col
-								justify-between p-6 text-white md:p-8'
+								justify-end p-6 text-white md:p-8'
 						>
 							{/* Icon */}
 							{icon && (
@@ -99,8 +101,8 @@ export function FeatureCard({
 								</div>
 							)}
 
-							{/* Text Content */}
-							<div className='mt-auto space-y-4'>
+							{/* Text Content - Bottom Left */}
+							<div className='space-y-4 text-left'>
 								<h3
 									className='line-clamp-2 text-2xl font-bold
 										leading-tight text-shadow-lg md:text-3xl'
@@ -119,23 +121,6 @@ export function FeatureCard({
 								>
 									{description}
 								</p>
-
-								{/* CTA Button - Visible on mobile */}
-								<div
-									className='opacity-0 transition-all duration-300
-										group-hover:translate-y-0 group-hover:opacity-100
-										md:translate-y-4'
-								>
-									<Button
-										variant='secondary'
-										className='mt-4 w-full sm:w-auto bg-white text-primary hover:bg-white/90'
-										tabIndex={-1}
-										aria-hidden='true'
-									>
-										Scopri di più
-										<ArrowRight className='ml-2 h-4 w-4' />
-									</Button>
-								</div>
 							</div>
 						</div>
 					</Card>

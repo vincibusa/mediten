@@ -7,31 +7,31 @@ const footerLinks = [
 	{
 		title: 'Architecture & Engineering',
 		links: [
-			{ href: '/restauro', label: 'Restauro' },
-			{ href: '/riqualificazione', label: 'Riqualificazione' },
-			{ href: '/edilizia', label: 'Edilizia' },
-			{ href: '/turismo', label: 'Turismo' },
-			{ href: '/idraulica', label: 'Idraulica' },
-			{ href: '/energia', label: 'Energia' },
+			{ href: '/progetti', label: 'Restauro' },
+			{ href: '/progetti', label: 'Riqualificazione' },
+			{ href: '/progetti', label: 'Edilizia' },
+			{ href: '/progetti', label: 'Turismo' },
+			{ href: '/progetti', label: 'Idraulica' },
+			{ href: '/progetti', label: 'Energia' },
 		],
 	},
 	{
 		title: 'Consulting',
 		links: [
 			{
-				href: '/consulting',
+				href: '/progetti',
 				label: 'Sviluppo Territoriale',
 			},
 			{
-				href: '/consulting',
+				href: '/progetti',
 				label: 'Studi di Fattibilità',
 			},
 			{
-				href: '/consulting',
+				href: '/progetti',
 				label: 'Progetti Agevolati',
 			},
 			{
-				href: '/consulting',
+				href: '/progetti',
 				label: 'Sicurezza D.Lgs 81/2008',
 			},
 		],

@@ -10,22 +10,20 @@ interface ProjectFeaturesProps {
 	title: string
 	subtitle?: string
 	features: ProjectFeature[]
-	variant?: 'default' | 'compact'
 }
 
 export function ProjectFeatures({
 	title,
 	subtitle,
 	features,
-	variant = 'default',
 }: ProjectFeaturesProps) {
 	const hasDescriptions = features.some((f) => f.description)
 
 	return (
-		<section className='bg-muted/30 py-16 md:py-24'>
+		<section className='bg-muted/30 py-20 md:py-32'>
 			<div className='container mx-auto px-4'>
 				<AnimatedSection className='mb-12'>
-					<h2 className='mb-4 text-3xl font-bold'>{title}</h2>
+					<h2 className='mb-4 text-3xl font-bold md:text-4xl'>{title}</h2>
 					<Separator className='mb-4 w-24' />
 					{subtitle && (
 						<p className='text-muted-foreground'>{subtitle}</p>

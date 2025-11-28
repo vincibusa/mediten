@@ -2,10 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
-import { ArrowLeft, MapPin, Calendar, Building } from 'lucide-react'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { MapPin, Calendar, Building } from 'lucide-react'
 
 interface ProjectHeroProps {
 	title: string
@@ -13,10 +10,7 @@ interface ProjectHeroProps {
 	location: string
 	client: string
 	year?: string
-	badges: string[]
 	heroImage: string
-	backLink: string
-	backLinkText: string
 }
 
 export function ProjectHero({
@@ -25,13 +19,10 @@ export function ProjectHero({
 	location,
 	client,
 	year,
-	badges,
 	heroImage,
-	backLink,
-	backLinkText,
 }: ProjectHeroProps) {
 	return (
-		<section className='relative h-[60vh] min-h-[500px]'>
+		<section className='relative min-h-screen flex items-end overflow-hidden'>
 			<Image
 				src={heroImage}
 				alt={title}
@@ -46,51 +37,27 @@ export function ProjectHero({
 
 			<div
 				className='container relative z-10 mx-auto flex h-full
-					flex-col justify-end px-4 pb-12'
+					flex-col justify-end px-4 pb-16 md:pb-24'
 			>
 				<motion.div
 					initial={{ opacity: 0, y: 30 }}
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.6 }}
+					className='max-w-4xl'
 				>
-					<Button
-						asChild
-						variant='ghost'
-						className='mb-6 text-white hover:bg-white/10
-							hover:text-white'
-					>
-						<Link href={backLink}>
-							<ArrowLeft className='mr-2 h-4 w-4' />
-							{backLinkText}
-						</Link>
-					</Button>
-
-					<div className='mb-4 flex flex-wrap gap-2'>
-						{badges.map((badge) => (
-							<Badge
-								key={badge}
-								variant={
-									badge === badges[0] ? 'secondary' : 'outline'
-								}
-								className={
-									badge !== badges[0] ? 'text-white' : ''
-								}
-							>
-								{badge}
-							</Badge>
-						))}
-					</div>
-
 					<h1
-						className='mb-4 text-4xl font-bold text-white md:text-5xl
-							lg:text-6xl'
+						className='mb-6 text-4xl font-bold text-white md:text-5xl
+							lg:text-6xl xl:text-7xl leading-tight'
+						style={{
+							textShadow: '2px 2px 4px rgba(0,0,0,0.3), 0 0 40px rgba(0,0,0,0.2)'
+						}}
 					>
 						{heroTitle || title}
 					</h1>
 
 					<div
-						className='flex flex-wrap gap-4 text-sm text-white/90
-							md:text-base'
+						className='flex flex-wrap gap-6 text-base text-white/90
+							md:text-lg'
 					>
 						<div className='flex items-center gap-2'>
 							<MapPin className='h-4 w-4' />

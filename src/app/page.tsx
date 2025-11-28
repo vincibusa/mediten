@@ -4,19 +4,13 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
-	Building2,
 	Hammer,
 	Recycle,
 	Hotel,
-	Droplet,
-	Zap,
-	Briefcase,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { FeatureCard } from '@/components/feature-card'
 import { AnimatedSection } from '@/components/animated-section'
 import { Separator } from '@/components/ui/separator'
-import { useRef } from 'react'
 import Autoplay from 'embla-carousel-autoplay'
 import {
 	Carousel,
@@ -27,92 +21,6 @@ import {
 } from '@/components/ui/carousel'
 import { Badge } from '@/components/ui/badge'
 
-const services = [
-	{
-		title: 'Restauro',
-		description:
-			'Restauro conservativo, consolidamento e recupero' +
-			' di edifici monumentali pubblici e privati, con' +
-			' particolare attenzione alle superfici murarie dipinte.',
-		href: '/restauro',
-		image:
-			'https://images.unsplash.com/photo-1558618666-fcd25c85cd64' +
-			'?w=800&h=600&fit=crop',
-		icon: <Hammer className='h-7 w-7' />,
-	},
-	{
-		title: 'Riqualificazione',
-		description:
-			'Recupero e riqualificazione dei Centri Storici;' +
-			' Riqualificazione aree urbane e archeologiche' +
-			' terrestri e marine.',
-		href: '/riqualificazione',
-		image:
-			'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab' +
-			'?w=800&h=600&fit=crop',
-		icon: <Recycle className='h-7 w-7' />,
-	},
-	{
-		title: 'Edilizia',
-		description:
-			'Edilizia scolastica, teatri, centri congressi,' +
-			' centri sportivi, sedi e uffici, edifici industriali,' +
-			' risanamento strutturale.',
-		href: '/edilizia',
-		image:
-			'https://images.unsplash.com/photo-1503387762-592deb58ef4e' +
-			'?w=800&h=600&fit=crop',
-		icon: <Building2 className='h-7 w-7' />,
-	},
-	{
-		title: 'Turismo',
-		description:
-			'Recupero, riqualificazione e rifunzionalizzazione' +
-			' immobili da destinare ad attività turistica;' +
-			' Valorizzazione turistica aree urbane.',
-		href: '/turismo',
-		image:
-			'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb' +
-			'?w=800&h=600&fit=crop',
-		icon: <Hotel className='h-7 w-7' />,
-	},
-	{
-		title: 'Idraulica',
-		description:
-			'Acquedotti, fognature, impianti irrigui, bonifiche,' +
-			' sistemazioni montane e fluviali, impianti di' +
-			' depurazione, riutilizzo acque reflue.',
-		href: '/idraulica',
-		image:
-			'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789' +
-			'?w=800&h=600&fit=crop',
-		icon: <Droplet className='h-7 w-7' />,
-	},
-	{
-		title: 'Energia',
-		description:
-			'Impianti di cogenerazione, produzione di energia da' +
-			' fonti rinnovabili (fotovoltaico, eolico, solare' +
-			' termico), produzione di energia da biomassa.',
-		href: '/energia',
-		image:
-			'https://images.unsplash.com/photo-1509391366360-2e959784a276' +
-			'?w=800&h=600&fit=crop',
-		icon: <Zap className='h-7 w-7' />,
-	},
-	{
-		title: 'Consulting',
-		description:
-			'Consulenza ed assistenza tecnico-economica, sviluppo' +
-			' territoriale, studi di fattibilità, progetti' +
-			' agevolati, sicurezza aziendale.',
-		href: '/consulting',
-		image:
-			'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40' +
-			'?w=800&h=600&fit=crop',
-		icon: <Briefcase className='h-7 w-7' />,
-	},
-]
 
 const ongoingProjects = [
 	{
@@ -300,7 +208,7 @@ export default function HomePage() {
 							}}
 						>
 							<CarouselContent>
-								{ongoingProjects.map((project, index) => (
+								{ongoingProjects.map((project) => (
 									<CarouselItem key={project.href}>
 										<div className='relative h-[80vh] w-full overflow-hidden rounded-3xl'>
 											<Image

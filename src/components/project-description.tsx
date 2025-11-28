@@ -17,10 +17,10 @@ export function ProjectDescription({
 	highlightText,
 }: ProjectDescriptionProps) {
 	return (
-		<AnimatedSection className='py-16 md:py-24'>
+		<AnimatedSection className='py-20 md:py-32'>
 			<div className='container mx-auto px-4'>
 				<div className='mx-auto max-w-4xl'>
-					<h2 className='mb-6 text-3xl font-bold'>{title}</h2>
+					<h2 className='mb-6 text-3xl font-bold md:text-4xl'>{title}</h2>
 					<Separator className='mb-8 w-24' />
 					<p
 						className='mb-6 text-lg leading-relaxed

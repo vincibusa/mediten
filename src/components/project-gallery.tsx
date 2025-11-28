@@ -30,10 +30,10 @@ export function ProjectGallery({
 
 	if (categories && categories.length > 0) {
 		return (
-			<section className={`${bgClass} py-16 md:py-24`}>
+			<section className={`${bgClass} py-20 md:py-32`}>
 				<div className='container mx-auto px-4'>
 					<AnimatedSection className='mb-12'>
-						<h2 className='mb-4 text-3xl font-bold'>{title}</h2>
+						<h2 className='mb-4 text-3xl font-bold md:text-4xl'>{title}</h2>
 						<Separator className='mb-4 w-24' />
 						{subtitle && (
 							<p className='text-muted-foreground'>{subtitle}</p>
@@ -118,10 +118,10 @@ export function ProjectGallery({
 
 	if (images && images.length > 0) {
 		return (
-			<section className={`${bgClass} py-16 md:py-24`}>
+			<section className={`${bgClass} py-20 md:py-32`}>
 				<div className='container mx-auto px-4'>
 					<AnimatedSection className='mb-12'>
-						<h2 className='mb-4 text-3xl font-bold'>{title}</h2>
+						<h2 className='mb-4 text-3xl font-bold md:text-4xl'>{title}</h2>
 						<Separator className='mb-4 w-24' />
 						{subtitle && (
 							<p className='text-muted-foreground'>{subtitle}</p>

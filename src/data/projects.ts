@@ -80,7 +80,7 @@ export const projects: ProjectData[] = [
 			' modalità, i test, le strumentazioni, i mezzi' +
 			' d\'opera atti a garantire l\'effettiva' +
 			' esecuzione a regola d\'arte.',
-		backLink: '/restauro',
+		backLink: '/progetti',
 		badges: ['Restauro', 'UNESCO', 'Conclusa'],
 		heroImage:
 			'https://static.wixstatic.com/media/921ce7_a517969c5b1846f5b53c45db3b2c50e2~mv2.png/v1/crop/x_41,y_0,w_662,h_631/fill/w_1600,h_1200,al_c,q_85,enc_avif,quality_auto/martorana_edited.png',
@@ -160,7 +160,7 @@ export const projects: ProjectData[] = [
 			' aperture e/o chiusure di nuovi vani e passaggi,' +
 			' conservando le caratteristiche strutturali,' +
 			' storiche e statiche dell\'edificio.',
-		backLink: '/turismo',
+		backLink: '/progetti',
 		badges: ['Turismo', '5 Stelle Superior', 'Conclusa'],
 		heroImage:
 			'https://static.wixstatic.com/media/921ce7_6cfcc0c506f04d6d8693d5399677bcc1~mv2.jpg/v1/crop/x_47,y_0,w_2730,h_2600/fill/w_800,h_800,al_c,q_80,enc_avif,quality_auto/P1060789_JPG.jpg',
@@ -236,7 +236,7 @@ export const projects: ProjectData[] = [
 			' integrato di riqualificazione urbana nel pieno' +
 			' rispetto dei vincoli UNESCO, valorizzando' +
 			' l\'identità storica e culturale del luogo.',
-		backLink: '/riqualificazione',
+		backLink: '/progetti',
 		badges: ['Riqualificazione', 'UNESCO', '2020'],
 		heroImage:
 			'https://images.unsplash.com/photo-1523755231516-e43fd2e8dca5?w=1600&h=900&fit=crop',
@@ -302,7 +302,7 @@ export const projects: ProjectData[] = [
 			' macchinari all\'avanguardia. La struttura si' +
 			' configura come un centro di eccellenza per la' +
 			' valorizzazione della tradizione lapidea siciliana.',
-		backLink: '/edilizia',
+		backLink: '/progetti',
 		badges: ['Edilizia', '2021'],
 		heroImage:
 			'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&h=900&fit=crop',
@@ -359,7 +359,7 @@ export const projects: ProjectData[] = [
 			' Sant\'Ignazio all\'Olivella, con consolidamento' +
 			' strutturale e recupero degli apparati decorativi' +
 			' barocchi.',
-		backLink: '/restauro',
+		backLink: '/progetti',
 		badges: ['Restauro', '2019'],
 		heroImage:
 			'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&h=900&fit=crop',
@@ -389,7 +389,7 @@ export const projects: ProjectData[] = [
 			'Interventi di restauro e consolidamento strutturale del' +
 			' Palazzo Zanca, sede del Municipio di Messina. Recupero' +
 			' delle facciate e degli spazi interni istituzionali.',
-		backLink: '/restauro',
+		backLink: '/progetti',
 		badges: ['Restauro', '2018'],
 		heroImage:
 			'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1600&h=900&fit=crop',
@@ -418,7 +418,7 @@ export const projects: ProjectData[] = [
 		client: 'MIUR',
 		description:
 			'Controllo di I livello con verifiche in loco degli interventi sugli edifici scolastici selezionati nell\'ambito del PON FESR "ambienti per l\'apprendimento" 2007-2013.',
-		backLink: '/consulting',
+		backLink: '/progetti',
 		badges: ['Consulting', 'MIUR', 'PON FESR'],
 		heroImage:
 			'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop',
@@ -432,7 +432,7 @@ export const projects: ProjectData[] = [
 		client: 'S.A.CAL',
 		description:
 			'S.A.CAL - Società di gestione dell\'areoporto di Lamezia Terme. Stima del ciclo di vita utile delle infrastrutture aeroportuali per revisione piano di ammortamento.',
-		backLink: '/consulting',
+		backLink: '/progetti',
 		badges: ['Consulting', 'Aeroporti', 'Analisi'],
 		heroImage:
 			'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
@@ -446,7 +446,7 @@ export const projects: ProjectData[] = [
 		client: 'Piano Battaglia srl',
 		description:
 			'Progettazione e assistenza alle procedure di finanza di progetto relative al Piano di sviluppo integrato del comprensorio di Piano Battaglia.',
-		backLink: '/consulting',
+		backLink: '/progetti',
 		badges: ['Consulting', 'Project Financing', 'Sviluppo'],
 		heroImage:
 			'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
@@ -460,7 +460,7 @@ export const projects: ProjectData[] = [
 		client: 'Regione Siciliana',
 		description:
 			'Coordinamento attività di gestione, valutazione, monitoraggio, controllo ed erogazione per SICILIA FUTURO - Organismo Intermedio. Programma Operativo Convergenza 2007-2013 - Fondo Sociale Europeo.',
-		backLink: '/consulting',
+		backLink: '/progetti',
 		badges: ['Consulting', 'FSE', 'Regione Siciliana'],
 		heroImage:
 			'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',
@@ -474,7 +474,7 @@ export const projects: ProjectData[] = [
 		client: 'Misura 1.17 POR Sicilia',
 		description:
 			'Coordinamento attività di valutazione tecnica economica, monitoraggio ed erogazione delle iniziative imprenditoriali in Sicilia a valere sul I Bando Misura 1.17 soggetti privati.',
-		backLink: '/consulting',
+		backLink: '/progetti',
 		badges: ['Consulting', 'POR Sicilia', 'Valutazione'],
 		heroImage:
 			'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop',
@@ -488,7 +488,7 @@ export const projects: ProjectData[] = [
 		client: 'Istruttoria Legge 488/92',
 		description:
 			'Coordinamento attività istruttoria Legge 488/92 19° bando Turismo e 20° bando Commercio. Coordinamento verifiche tecniche per Programmi Complessi (Patti territoriali e Contratti d\'area).',
-		backLink: '/consulting',
+		backLink: '/progetti',
 		badges: ['Consulting', 'Legge 488/92', 'Istruttoria'],
 		heroImage:
 			'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=600&fit=crop',
@@ -502,7 +502,7 @@ export const projects: ProjectData[] = [
 		client: 'KPMG',
 		description:
 			'Servizio di inventariazione dei beni mobili e immobili dell\'A.O.O.R. Papardo – Piemonte di Messina per certificabilità dei bilanci.',
-		backLink: '/consulting',
+		backLink: '/progetti',
 		badges: ['Consulting', 'KPMG', 'Sanità'],
 		heroImage:
 			'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
@@ -516,7 +516,7 @@ export const projects: ProjectData[] = [
 		client: 'Regione Sicilia - KPMG',
 		description:
 			'Assistenza tecnica per l\'attuazione del PRUSST della città di Palermo e redazione studi di fattibilità (Mercato Ortofrutticolo, Centro Congressi, Costa Sud).',
-		backLink: '/consulting',
+		backLink: '/progetti',
 		badges: ['Consulting', 'PRUSST', 'Palermo'],
 		heroImage:
 			'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop',

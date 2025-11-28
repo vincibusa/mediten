@@ -18,10 +18,10 @@ export function ProjectCTA({
 	buttonLink = '/contatti',
 }: ProjectCTAProps) {
 	return (
-		<AnimatedSection className='py-16 md:py-24'>
+		<AnimatedSection className='py-20 md:py-32'>
 			<div className='container mx-auto px-4'>
 				<div className='mx-auto max-w-2xl text-center'>
-					<h2 className='mb-4 text-3xl font-bold'>{title}</h2>
+					<h2 className='mb-4 text-3xl font-bold md:text-4xl'>{title}</h2>
 					<p className='mb-8 text-lg text-muted-foreground'>
 						{description}
 					</p>

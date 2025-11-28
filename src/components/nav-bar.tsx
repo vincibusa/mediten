@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import {
 	Menu,
 	X,
@@ -12,13 +12,6 @@ import {
 	FolderOpen,
 	Mail,
 	Shield,
-	Hammer,
-	Recycle,
-	Building2,
-	Hotel,
-	Droplet,
-	Zap,
-	Briefcase,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
@@ -36,23 +29,10 @@ const navItems = [
 	{ href: '/policy', label: 'Policy', icon: Shield },
 ]
 
-const servicesItems = [
-	{ href: '/restauro', label: 'Restauro', icon: Hammer },
-	{
-		href: '/riqualificazione',
-		label: 'Riqualificazione',
-		icon: Recycle,
-	},
-	{ href: '/edilizia', label: 'Edilizia', icon: Building2 },
-	{ href: '/turismo', label: 'Turismo', icon: Hotel },
-	{ href: '/idraulica', label: 'Idraulica', icon: Droplet },
-	{ href: '/energia', label: 'Energia', icon: Zap },
-	{ href: '/consulting', label: 'Consulting', icon: Briefcase },
-]
+
 
 export function NavBar() {
 	const [isOpen, setIsOpen] = useState(false)
-	const [servicesOpen, setServicesOpen] = useState(false)
 	const [isScrolled, setIsScrolled] = useState(false)
 
 	useEffect(() => {
@@ -109,60 +89,6 @@ export function NavBar() {
 								{item.label}
 							</Link>
 						))}
-
-						{/* Services Dropdown */}
-						<div className='relative'>
-							<button
-								onMouseEnter={() => setServicesOpen(true)}
-								onMouseLeave={() => setServicesOpen(false)}
-								onFocus={() => setServicesOpen(true)}
-								onBlur={(e) => {
-									if (!e.currentTarget.contains(e.relatedTarget)) {
-										setServicesOpen(false)
-									}
-								}}
-								aria-expanded={servicesOpen}
-								aria-haspopup='true'
-								aria-label='Menu servizi'
-								className='text-sm font-medium
-								transition-colors hover:text-primary'
-							>
-								Servizi
-							</button>
-							<AnimatePresence>
-								{servicesOpen && (
-									<motion.div
-										initial={{ opacity: 0, y: 10 }}
-										animate={{ opacity: 1, y: 0 }}
-										exit={{ opacity: 0, y: 10 }}
-										transition={{ duration: 0.2 }}
-										onMouseEnter={() => setServicesOpen(true)}
-										onMouseLeave={() => setServicesOpen(false)}
-										role='menu'
-										aria-label='Elenco servizi'
-										className='absolute left-0 top-full mt-2
-										w-48 rounded-md border bg-popover p-2
-										shadow-lg'
-									>
-										{servicesItems.map((item) => (
-											<Link
-												key={item.href}
-												href={item.href}
-												role='menuitem'
-												className='block px-3 py-2
-									text-sm transition-colors
-									hover:bg-accent
-									hover:text-accent-foreground
-									focus:bg-accent
-									focus:text-accent-foreground'
-											>
-												{item.label}
-											</Link>
-										))}
-									</motion.div>
-								)}
-							</AnimatePresence>
-						</div>
 
 						<Button asChild>
 							<Link href='/contatti'>Contattaci</Link>
@@ -225,44 +151,6 @@ export function NavBar() {
 											</Link>
 										)
 									})}
-
-									{/* Services Section */}
-									<div className='mt-6 border-t pt-6'>
-										<p
-											className='mb-3 px-4 text-xs font-semibold
-												uppercase tracking-wider
-												text-muted-foreground'
-										>
-											I Nostri Servizi
-										</p>
-										{servicesItems.map((item) => {
-											const Icon = item.icon
-											return (
-												<Link
-													key={item.href}
-													href={item.href}
-													onClick={() => setIsOpen(false)}
-													className='group flex items-center
-														gap-3 rounded-lg px-4 py-2.5
-														text-sm transition-all
-														hover:bg-accent
-														hover:text-accent-foreground'
-												>
-													<Icon
-														className='h-4 w-4 flex-shrink-0'
-													/>
-													<span className='flex-1'>
-														{item.label}
-													</span>
-													<ChevronRight
-														className='h-4 w-4 opacity-0
-															transition-opacity
-															group-hover:opacity-100'
-													/>
-												</Link>
-											)
-										})}
-									</div>
 								</div>
 
 								{/* CTA Button - Fixed at bottom */}
